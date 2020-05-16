@@ -2,10 +2,11 @@ import random
 from collections import Counter, namedtuple
 from enum import Enum
 from operator import itemgetter
-from typing import List, Iterator, Union, Optional, Dict, Tuple
+from typing import List, Union, Optional, Dict, Tuple
 
 Players = namedtuple("Players", "X O")
 MiniMaxResult = namedtuple("MiniMaxResult", "player cell result")
+BAD_PARAMETER_MESSAGE: str = "Bad parameters"
 
 
 class Player(Enum):
@@ -45,7 +46,6 @@ class TicTacToe(object):
             Returns an instance to the class or a falsy value if user wants to end program.
 
         """
-        BAD_PARAMETER_MESSAGE: str = "Bad parameters"
         while True:
             try:
                 command = input("Input command:\n").split(maxsplit=3)
@@ -146,7 +146,7 @@ class TicTacToe(object):
             yield from i
 
     @property
-    def all_combo_index(self) -> List[List[str]]:
+    def all_combo_index(self) -> List[List[int]]:
         for i in [self.rows_index, self.columns_index, self.diagonals_index]:
             yield from i
 
@@ -226,7 +226,8 @@ class TicTacToe(object):
             cell (): Cell to mark on the board.
         """
 
-        coordinates_list: Iterator[Union[str, int]]
+        coordinates_list: List[Union[str, int]]
+        list_element: int
 
         # make a fixed move - for simulation
         if mark is not None and cell is not None:
