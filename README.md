@@ -1,2 +1,2 @@
-# HS_Python_Course
-HyperSkill Python Course
+# HS Python Course
+My solutions from the HyperSkill Python Course projects.
